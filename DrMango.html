@@ -1,19 +1,40 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
+<html>
 <body>
-    <canvas id="myCanvas" width="400" height="400"
-            style="border:1px solid #c3c3c3;"
-    </canvas>
-    <script>
-var myVar = setInterval(myTimer, 10);
-mango 
 
-    </script>
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+//GRADIENT
+var light = ctx.createRadialGradient(150,150,0,200,200,350);
+light.addColorStop(0,"yellow");
+light.addColorStop(1,"black");
+
+
+ctx.fillStyle = light;
+ctx.fillRect(0,0,500,500);
+
+
+
+//MANGO
+drawUpdate();
+
+function drawUpdate(){
+    for(var i = 0; i<16; i++){
+        ctx.beginPath();
+      ctx.arc(50, 50, 5, 0, 2 * Math.PI, false);
+      ctx.fillStyle = 'orange';
+      ctx.fill();
+      ctx.lineWidth = 0;
+      ctx.strokeStyle = '#003300';
+      ctx.stroke();
+    }
+}
+</script>
 
 </body>
 </html>
