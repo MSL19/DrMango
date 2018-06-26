@@ -26,6 +26,7 @@ var ctx = c.getContext("2d");
 
         ctx.fillStyle = light;
         ctx.fillRect(0, 0, 500, 500);
+
         drawMangos(i, i);
     }
     
@@ -38,7 +39,16 @@ function drawMangos(xCord, yCord){
       ctx.strokeStyle = '#003300';
       ctx.stroke();
     }
+    function calcDistance(xCord, yCord) {
+        var xDist = Math.abs(xCord - 150);
+        var yDist = Math.abs(yCord - 150);
+        return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
 
+    }
+    function calcBrightness(xCord, yCord) {
+        if (calcDistance(xcord, yCord) == 0) return 2;
+        else return 1 / calcDistance(xCord, yCord);
+    }
 </script>
 
 </body>
