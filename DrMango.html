@@ -80,41 +80,112 @@ createMangos();
     function updatePos(gNum) {
         //+++++++++++++++++
         console.log("asdsada");
-        if(deltaBrightness[gNum+2]>0){ //this is bad
-                if(prevXDir=="+"){
-                    if(genePool[gNum+2].charAt(0)=="+"){
-                        prevXDir[gNum+2] = "+";
-                        xArr[gNum+2]+=1; //+DB, +dir, +add === bad
-                    }
-                    else{
-                        prevXDir[gNum+2] = "-"; //good
-                        xArr[gNum+2]-=1;
-                    }
+        if (deltaBrightness[gNum + 2] > 0) { //this is bad
+
+
+            if (prevXDir[gNum + 2] == "+") {
+                if (genePool[gNum + 2].charAt(0) == "+") {
+                    prevXDir[gNum + 2] = "+";
+                    xArr[gNum + 2] += 1; //+DB, +dir, +add === bad
                 }
-                else{
-                    if(genePool[gNum+2].charAt(1)=="-"){
-                        prevXDir[gNum+2] = "-"; //bad
-                        xArr[gNum+2]-=1;
-                    }
-                    else{
-                        prevXDir[gNum+2] = "+";
-                        xArr[gNum+2]+=1;
-                    }
+                else {
+                    prevXDir[gNum + 2] = "-"; //good
+                    xArr[gNum + 2] -= 1;
                 }
-                if(prevYDir=="+"){
-                    if(genePool[gNum+2].charAt(2)=="+"){
-                        prevYDir[gNum+2] = "+";
-                        yArr[gNum+2]+=1;
-                    }
-                    else{
-                        prevYDir[gNum+2] = "-";
-                        yArr[gNum+2]-=1;
-                    }
+            }
+            else {
+                if (genePool[gNum + 2].charAt(1) == "-") {
+                    prevXDir[gNum + 2] = "-"; //bad
+                    xArr[gNum + 2] -= 1;
                 }
+                else {
+                    prevXDir[gNum + 2] = "+";
+                    xArr[gNum + 2] += 1;
+                }
+            }
+
+
+            if (prevYDir[gNum + 2] == "+") {
+                if (genePool[gNum + 2].charAt(2) == "+") { //bad
+                    prevYDir[gNum + 2] = "+";
+                    yArr[gNum + 2] += 1;
+                }
+                else {
+                    prevYDir[gNum + 2] = "-"; //good
+                    yArr[gNum + 2] -= 1;
+                }
+            }
+            else {
+                if (genePool[gNum + 2].charAt(3) == "-") { //bad
+                    prevYDir[gNum + 2] = "-";
+                    yArr[gNum + 2] -= 1;
+                }
+                else {
+                    prevYDir[gNum + 2] = "+";
+                    yArr[gNum + 2] += 1;
+                }
+            }
+
+
+        }
+        else { //if the delta brightness is lower ie. good
+            if (prevXDir[gNum + 2] == "+") {
+                if (genePool[gNum + 2].charAt(4) == "+") {
+                    prevXDir[gNum + 2] = "+";
+                    xArr[gNum + 2] += 1; //good
+                }
+                else {
+                    prevXDir[gNum + 2] = "-"; //bad
+                    xArr[gNum + 2] -= 1;
+                }
+            }
+            else {
+                if (genePool[gNum + 2].charAt(5) == "-") {
+                    prevXDir[gNum + 2] = "-"; //good
+                    xArr[gNum + 2] -= 1;
+                }
+                else {
+                    prevXDir[gNum + 2] = "+"; //bad
+                    xArr[gNum + 2] += 1;
+                }
+            }
+
+
+            if (prevYDir[gNum + 2] == "+") {
+                if (genePool[gNum + 2].charAt(6) == "+") { //good
+                    prevYDir[gNum + 2] = "+";
+                    yArr[gNum + 2] += 1;
+                }
+                else {
+                    prevYDir[gNum + 2] = "-"; //bad
+                    yArr[gNum + 2] -= 1;
+                }
+            }
+            else {
+                if (genePool[gNum + 2].charAt(7) == "-") { //good
+                    prevYDir[gNum + 2] = "-";
+                    yArr[gNum + 2] -= 1;
+                }
+                else {
+                    prevYDir[gNum + 2] = "+"; //bad
+                    yArr[gNum + 2] += 1;
+                }
+            }
         }
 // code that looks at the gens and returns new positions to the array
 
-		
+        if (yArr[gNum + 2] >= 500) {
+            yArr[gNum + 2] = 500;
+        }
+        if (yArr[gNum + 2] <= 0) {
+            yArr[gNum + 2] = 0;
+        }
+        if (xArr[gNum + 2] >= 500) {
+            xArr[gNum + 2] = 500;
+        }
+        if (xArr[gNum + 2] <= 0) {
+            xArr[gNum + 2] = 0;
+        }
        
     }
     
