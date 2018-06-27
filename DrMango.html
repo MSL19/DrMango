@@ -15,6 +15,7 @@ var initX = Math.floor(Math.random()*401);
 var initY = Math.floor(Math.random()*401);
 var prevXDir = ["0","0"];
 var prevYDir =["0","0"];
+    var fitnessArr = [0, 0];
 var deltaBrightness = [0,0];
 var prevBrightness = [0,0];
 var xArr = [0,0];
@@ -22,8 +23,12 @@ var yArr = [0,0];
 //GRADIENT
 
 
+    function runNextGen() {
 
-    var updateClock = setInterval(mainUpdate, 100);
+
+    }
+
+    var updateClock = setInterval(mainUpdate, 50);
 //MANGO
 //input: Delta Brightness, previous direction
 //basically its and array of strings
@@ -61,7 +66,7 @@ var yArr = [0,0];
 createMangos();
 
 	function mainUpdate(){
-		ctx.clearRect(0, 0, 500, 500); //DELETE THIS TO SHOW THE PATHS!!!!!!!!!!!
+		//ctx.clearRect(0, 0, 500, 500); //DELETE THIS TO SHOW THE PATHS!!!!!!!!!!!
         var light = ctx.createRadialGradient(150, 150, 0, 200, 200, 350);
         light.addColorStop(0, "white");
         light.addColorStop(1, "black");
@@ -79,7 +84,7 @@ createMangos();
     var i = 0;
     function updatePos(gNum) {
         //+++++++++++++++++
-        console.log("asdsada");
+        
         if (deltaBrightness[gNum + 2] > 0) { //this is bad
 
 
@@ -172,8 +177,8 @@ createMangos();
                 }
             }
         }
-// code that looks at the gens and returns new positions to the array
-
+        // code that looks at the gens and returns new positions to the array
+        deltaBrightness[gNum + 2] = calcBrightness(xArr[gNum + 2], yArr[gNum + 2]) - prevBrightness[gNum + 2];
         if (yArr[gNum + 2] >= 500) {
             yArr[gNum + 2] = 500;
         }
@@ -186,7 +191,7 @@ createMangos();
         if (xArr[gNum + 2] <= 0) {
             xArr[gNum + 2] = 0;
         }
-       
+        prevBrightness[gNum + 2] = calcBrightness(xArr[gNum + 2], yArr[gNum + 2]);
     }
     
     function drawMango(xCord, yCord){
