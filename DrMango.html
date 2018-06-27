@@ -13,10 +13,10 @@ var ctx = c.getContext("2d");
 var genePool = ["0000", "1111"];
 var initX = Math.floor(Math.random()*401);
 var initY = Math.floor(Math.random()*401);
-var prevXDir = "+";
-var prevYDir = "+";
-var deltaBrightness;
-var prevBrightness;
+var prevXDir = ["0","0"];
+var prevYDir =["0","0"];
+var deltaBrightness = [0,0];
+var prevBrightness = [0,0];
 var xArr = [0,0];
 var yArr = [0,0];
 //GRADIENT
@@ -48,6 +48,10 @@ var yArr = [0,0];
 			genePool[genePool.length] = tempGene; 
 			xArr[xArr.length] = initX;
 			yArr[yArr.length] = initY;
+            prevXDir[prevXDir.length] = "+";
+            prevYDir[prevYDir.length] = "+";
+            prevBrightness[prevBrightness.length] = calcBrightness(initX, initY);
+            deltaBrightness[deltaBrightness.length] = 1;
 			console.log(tempGene);
 		}
 		
@@ -67,15 +71,49 @@ createMangos();
 		updatePos(k);
 		drawMango(xArr[k+2], yArr[k+2]);
 		}
+
+        
 	}
 
 
     var i = 0;
     function updatePos(gNum) {
-        
+        //+++++++++++++++++
+        console.log("asdsada");
+        if(deltaBrightness[gNum+2]>0){ //this is bad
+                if(prevXDir=="+"){
+                    if(genePool[gNum+2].charAt(0)=="+"){
+                        prevXDir[gNum+2] = "+";
+                        xArr[gNum+2]+=1; //+DB, +dir, +add === bad
+                    }
+                    else{
+                        prevXDir[gNum+2] = "-"; //good
+                        xArr[gNum+2]-=1;
+                    }
+                }
+                else{
+                    if(genePool[gNum+2].charAt(1)=="-"){
+                        prevXDir[gNum+2] = "-"; //bad
+                        xArr[gNum+2]-=1;
+                    }
+                    else{
+                        prevXDir[gNum+2] = "+";
+                        xArr[gNum+2]+=1;
+                    }
+                }
+                if(prevYDir=="+"){
+                    if(genePool[gNum+2].charAt(2)=="+"){
+                        prevYDir[gNum+2] = "+";
+                        yArr[gNum+2]+=1;
+                    }
+                    else{
+                        prevYDir[gNum+2] = "-";
+                        yArr[gNum+2]-=1;
+                    }
+                }
+        }
 // code that looks at the gens and returns new positions to the array
 
-		// XXXXXXXXX
 		
        
     }
@@ -99,7 +137,7 @@ createMangos();
     }
 
     function calcBrightness(xCord, yCord) {
-        if (calcDistance(xcord, yCord) == 0){
+        if (calcDistance(xCord, yCord) == 0){
         
          return 1;
          }
@@ -109,13 +147,10 @@ createMangos();
          }
     }
     
-    function calcDeltaBrightness(xCord, yCord){
-    	 
-    	
-    }
+   
 
     function calcFitness(xCord, yCord) {
-        return calcDistance(xCord, yCord) / 495;
+        return calcDistance(xCord, yCord) / 494;
     }
     
     
