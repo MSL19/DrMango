@@ -13,6 +13,10 @@ var ctx = c.getContext("2d");
 var genePool = ["0000", "1111"];
 var initX = Math.floor(Math.random()*401);
 var initY = Math.floor(Math.random()*401);
+var prevXDir = "+";
+var prevYDir = "+";
+var deltaBrightness;
+var prevBrightness;
 var xArr = [0,0];
 var yArr = [0,0];
 //GRADIENT
@@ -27,13 +31,13 @@ var yArr = [0,0];
 //eg: ++-- ----
 
 //each one is a case 
-//eg the first case is +DeltaGrightness, previous direction of posX, result posX, so it would be a bad "gene" 
+//eg the first case is posDeltaGrightness, previous direction of posX, result posX, so it would be a bad "gene" 
 //if the delta brightness is negative and the direction gene is negative then the thing will keep going the same direction
 //the positions of each are in arrays of ints, one for each axis
 	function createMangos(){
 		for(var i = 0; i<16; i++){
 			var tempGene = "";
-			for(var j = 0; j<4; j++){
+			for(var j = 0; j<8; j++){
 				if(Math.floor(Math.random()*2)>0){
 					tempGene+="+"
 				}
@@ -67,9 +71,16 @@ createMangos();
 
 
     var i = 0;
-    function updatePos(var gNum) {
+    function updatePos(gNum) {
         
 // code that looks at the gens and returns new positions to the array
+
+		// XXXXXXXXX
+		if(){
+			
+		
+		}
+		prevBrightness = 
        
     }
     
@@ -92,8 +103,19 @@ createMangos();
     }
 
     function calcBrightness(xCord, yCord) {
-        if (calcDistance(xcord, yCord) == 0) return 2;
-        else return 1 / calcDistance(xCord, yCord);
+        if (calcDistance(xcord, yCord) == 0){
+        
+         return 1;
+         }
+        else{
+         
+         return 1 / calcDistance(xCord, yCord);
+         }
+    }
+    
+    function calcDeltaBrightness(xCord, yCord){
+    	 
+    	
     }
 
     function calcFitness(xCord, yCord) {
